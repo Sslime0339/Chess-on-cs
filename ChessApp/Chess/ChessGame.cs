@@ -1,0 +1,11 @@
+
+
+
+
+namespace Chess
+{
+  class ChessGame
+  {
+    
+  }
+}
