@@ -8,11 +8,18 @@ namespace ConsoleUI
   {
     public static void Chessboard(SquareInfo[,] boardData)
     {
+      
+      Console.BackgroundColor = ConsoleColor.White;
+      Console.ForegroundColor = ConsoleColor.Black;
+      Console.Write("   A B C D E F G H   ");
+      Console.ResetColor();
+      Console.Write("\n");
+      
       for (int j = 7; j >= 0; j--)
       {
         Console.BackgroundColor = ConsoleColor.White;
         Console.ForegroundColor = ConsoleColor.Black;
-        Console.Write(" ");
+        Console.Write($" {j+1} ");
         
         for (int i = 0; i < 8; i++)
         {
@@ -22,9 +29,16 @@ namespace ConsoleUI
           
           Console.Write(" ");
         }
+        Console.Write($"{j+1} ");
         Console.ResetColor();
         Console.Write("\n");
       }
+      
+      Console.BackgroundColor = ConsoleColor.White;
+      Console.ForegroundColor = ConsoleColor.Black;
+      Console.Write("   A B C D E F G H   ");
+      Console.ResetColor();
+      Console.Write("\n");
     }
     
     private static void DrawSquare(SquareInfo square, int x, int y)
