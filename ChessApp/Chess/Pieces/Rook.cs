@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace Chess
 {
-  class Pawn : Piece
+  class Rook : Piece
   {
     private bool _fistMove;
     
-    public Pawn(Vector2 position, PieceColor color, Chessboard board, bool fistMove = true) : base(position, color, board, PieceType.Pawn)
+    public Rook(Vector2 position, PieceColor color, Chessboard board, bool fistMove = true) : base(position, color, board, PieceType.Rook)
     {
       _fistMove = fistMove;
     }
@@ -19,6 +19,5 @@ namespace Chess
       return null;
     }
     */
-    
   }
 }

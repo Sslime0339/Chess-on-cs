@@ -17,6 +17,9 @@ namespace Chess
     }
     
     
+    
+    
+    
     public SquareInfo[,] GetBoardDrawingData()
     {
       return _board.GetDrawingData();

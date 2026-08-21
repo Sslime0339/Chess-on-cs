@@ -26,7 +26,7 @@ namespace Chess
     }
     
     
-    public abstract List<Vector2> GetAllMove();
+    //public abstract List<Vector2> GetAllMove();
     
     
   }

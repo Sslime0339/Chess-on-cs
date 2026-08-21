@@ -23,7 +23,30 @@ namespace Chess
         }
       }
       
-      AddPiece(new Pawn(new Vector2(0, 1), PieceColor.White, this));
+      
+      for (int i = 0; i < 8; i++)
+        AddPiece(new Pawn(new Vector2(i, 1), PieceColor.White, this));
+      
+      for (int i = 0; i < 8; i++)
+        AddPiece(new Pawn(new Vector2(i, 6), PieceColor.Black, this));
+      
+      AddPiece(new Rook(new Vector2(0,0), PieceColor.White, this));
+      AddPiece(new Rook(new Vector2(7,0), PieceColor.White, this));
+      AddPiece(new Knight(new Vector2(1, 0), PieceColor.White, this));
+      AddPiece(new Knight(new Vector2(6, 0), PieceColor.White, this));
+      AddPiece(new Bishop(new Vector2(2, 0), PieceColor.White, this));
+      AddPiece(new Bishop(new Vector2(5, 0), PieceColor.White, this));
+      AddPiece(new Queen(new Vector2(3, 0), PieceColor.White, this));
+      AddPiece(new King(new Vector2(4, 0), PieceColor.White, this));
+      
+      AddPiece(new Rook(new Vector2(0,7), PieceColor.Black, this));
+      AddPiece(new Rook(new Vector2(7,7), PieceColor.Black, this));
+      AddPiece(new Knight(new Vector2(1, 7), PieceColor.Black, this));
+      AddPiece(new Knight(new Vector2(6, 7), PieceColor.Black, this));
+      AddPiece(new Bishop(new Vector2(2, 7), PieceColor.Black, this));
+      AddPiece(new Bishop(new Vector2(5, 7), PieceColor.Black, this));
+      AddPiece(new Queen(new Vector2(3, 7), PieceColor.Black, this));
+      AddPiece(new King(new Vector2(4, 7), PieceColor.Black, this));
     }
     
     
