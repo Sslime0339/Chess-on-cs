@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 
+
 namespace Chess
 {
   abstract class Piece
@@ -13,12 +14,15 @@ namespace Chess
     
     public readonly PieceColor color;
     
+    public readonly PieceType type;
     
-    public Piece(Vector2 position, PieceColor color, Chessboard board)
+    
+    public Piece(Vector2 position, PieceColor color, Chessboard board, PieceType type)
     {
       _position = position;
       this.color = color;
       _board = board;
+      this.type = type;
     }
     
     

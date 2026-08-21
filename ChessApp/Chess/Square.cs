@@ -16,5 +16,13 @@ namespace Chess
       _piece = piece;
     }
     
+    public SquareInfo GetSquareInfo()
+    {
+      if (_piece == null)
+        return SquareInfo.EmptySquare();
+      else
+        return new SquareInfo(_piece.type, _piece.color);
+      
+    }
   }
 }
