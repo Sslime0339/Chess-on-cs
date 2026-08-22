@@ -15,6 +15,8 @@ namespace ConsoleUI
       from = new Vector2(0, 0);
       to = new Vector2(0, 0);
       
+      input = input.Replace(" ", "");
+      
       // Проверяем базовую длину (например, "e2e4" — это 4 символа)
       if (string.IsNullOrWhiteSpace(input) || input.Length != 4)
         return false;
@@ -39,8 +41,8 @@ namespace ConsoleUI
       // Шахматная доска в массиве обычно перевернута: 
       // '1' строка — это самый низ доски (индекс 7 или 0, в зависимости от вашей логики)
       // Предположим, что 0 — это 8-я горизонталь, а 7 — это 1-я горизонталь:
-      int fromY = (startRank - '0');
-      int toY = (endRank - '0');
+      int fromY = (startRank - '1');
+      int toY = (endRank - '1');
 
       from = new Vector2(fromX, fromY);
       to = new Vector2(toX, toY);

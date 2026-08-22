@@ -19,7 +19,7 @@ namespace Chess
     
     public override string ToString()
     {
-      return $"x = {X}, y = {Y}";
+      return $"{{x = {X}, y = {Y}}}";
     }
   }
 }
