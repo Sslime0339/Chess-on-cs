@@ -1,4 +1,5 @@
 using Chess;
+using System;
 
 
 namespace ConsoleUI
@@ -8,7 +9,16 @@ namespace ConsoleUI
     public static void Start()
     {
       ChessGame game = new ChessGame();
-      Draw.Chessboard(game.GetBoardDrawingData());
+      while (!game.IsGameOver)
+      {
+        Draw.Chessboard(game.GetBoardData());
+        Console.WriteLine($"Введите ход ({game.CurrentTurn})");
+        string input = Console.ReadLine();
+        Vector2 from;
+        Vector2 to;
+        bool isCorrect = ConsoleInputHandler.TryParseMove(input, out from, out to);
+        Console.WriteLine($"\nfrom {from}, to {to}, isCorrect {isCorrect}\n");
+      }
     }
   }
 }

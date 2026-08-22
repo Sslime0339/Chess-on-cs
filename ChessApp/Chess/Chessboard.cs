@@ -55,7 +55,7 @@ namespace Chess
       _board[piece.Position.X, piece.Position.Y].AddPiece(piece);
     }
     
-    public SquareInfo[,] GetDrawingData()
+    public SquareInfo[,] GetData()
     {
       SquareInfo[,] data = new SquareInfo[8, 8];
       for (int i = 0; i < 8; i++)
