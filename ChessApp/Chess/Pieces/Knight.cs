@@ -13,11 +13,16 @@ namespace Chess
       
     }
     
-    /*
-    public override List<Vector2> GetAllMove()
+    // TODO:
+    public override List<Vector2> GetValidMoves()
     {
       return null;
     }
-    */
+    
+    // TODO:
+    public override List<Vector2> GetAttackedSquares()
+    {
+      return null;
+    }
   }
 }

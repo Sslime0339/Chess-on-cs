@@ -9,7 +9,21 @@ namespace Chess
   {
     private Square[,] _board;
     
-    //public 
+    public Square this[int x, int y]
+    {
+      get
+      {
+        return _board[x, y];
+      }
+    }
+    
+    public Square this[Vector2 vec]
+    {
+      get
+      {
+        return this[vec.X, vec.Y];
+      }
+    }
     
     public Chessboard()
     {
@@ -29,6 +43,9 @@ namespace Chess
       
       for (int i = 0; i < 8; i++)
         AddPiece(new Pawn(new Vector2(i, 6), PieceColor.Black, this));
+      
+      // тест
+      // AddPiece(new Pawn(new Vector2(3, 2), PieceColor.Black, this));
       
       AddPiece(new Rook(new Vector2(0,0), PieceColor.White, this));
       AddPiece(new Rook(new Vector2(7,0), PieceColor.White, this));

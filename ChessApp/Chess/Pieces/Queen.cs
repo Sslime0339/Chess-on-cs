@@ -8,16 +8,21 @@ namespace Chess
   {
     
     
-    public Queen(Vector2 position, PieceColor color, Chessboard board) : base(position, color, board, PieceType.Queen)
+    public Queen(Vector2 position, PieceColor color, Chessboard board, bool fistMove = true) : base(position, color, board, PieceType.Queen, fistMove)
     {
       
     }
     
-    /*
-    public override List<Vector2> GetAllMove()
+    // TODO:
+    public override List<Vector2> GetValidMoves()
     {
       return null;
     }
-    */
+    
+    // TODO:
+    public override List<Vector2> GetAttackedSquares()
+    {
+      return null;
+    }
   }
 }

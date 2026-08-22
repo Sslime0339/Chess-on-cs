@@ -6,18 +6,22 @@ namespace Chess
 {
   class Rook : Piece
   {
-    private bool _fistMove;
     
-    public Rook(Vector2 position, PieceColor color, Chessboard board, bool fistMove = true) : base(position, color, board, PieceType.Rook)
+    public Rook(Vector2 position, PieceColor color, Chessboard board, bool fistMove = true) : base(position, color, board, PieceType.Rook, fistMove)
     {
-      _fistMove = fistMove;
+      
     }
     
-    /*
-    public override List<Vector2> GetAllMove()
+    // TODO:
+    public override List<Vector2> GetValidMoves()
     {
       return null;
     }
-    */
+    
+    // TODO:
+    public override List<Vector2> GetAttackedSquares()
+    {
+      return null;
+    }
   }
 }

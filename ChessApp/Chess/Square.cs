@@ -7,6 +7,11 @@ namespace Chess
   class Square
   {
     private Piece _piece;
+    public Piece CurrentPiece => _piece;
+    
+    public bool IsEmpty => _piece == null;
+    
+    public bool IsAttacked { get; set; }
     
     // хз вроде не нужен
     //public readonly Vector2 position;
@@ -15,6 +20,7 @@ namespace Chess
     {
       _piece = piece;
     }
+    
     
     public SquareInfo GetSquareInfo()
     {

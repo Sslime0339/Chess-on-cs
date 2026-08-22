@@ -1,4 +1,4 @@
-
+using System.Collections.Generic;
 
 
 
@@ -23,9 +23,17 @@ namespace Chess
     }
     
     
-    public MoveResult Move()
+    public MoveResult Move(Vector2 from, Vector2 to)
     {
-      return MoveResult.IllegalMove;
+      if (_board[from].IsEmpty) return MoveResult.IllegalMove;
+      
+      Piece piece = _board[from].CurrentPiece;
+      List<Vector2> validMoves = piece.GetValidMoves();
+      
+      if (validMoves.Contains(to))
+        return MoveResult.Success;
+      
+      return MoveResult.PromotionRequired;
     }
     
     
