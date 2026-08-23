@@ -22,7 +22,8 @@ namespace Chess
     // TODO:
     public override List<Vector2> GetAllMoves()
     {
-      return null;
+      List<Vector2> result = new List<Vector2>();
+      
     }
     
     // TODO:

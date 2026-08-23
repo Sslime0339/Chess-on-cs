@@ -108,5 +108,6 @@ namespace Chess
         position.Y >= 0 && position.Y < 8);
     }
     
+    
   }
 }
