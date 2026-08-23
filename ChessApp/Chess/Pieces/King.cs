@@ -21,14 +21,30 @@ namespace Chess
     // TODO:
     public override List<Vector2> GetAllMoves()
     {
-      return null;
+      return GetAllKingMove();
     }
     
     // TODO:
     public override List<Vector2> GetAttackedPositions()
     {
-      return null;
+      return GetAllKingMove();
     }
     
+    
+    private List<Vector2> GetAllKingMove()
+    {
+      List<Vector2> result = new List<Vector2>();
+      
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(1, 1), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(1, 0), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(1, -1), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(0, -1), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(-1, -1), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(-1, 0), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(-1, 1), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(0, 1), result);
+      
+      return result;
+    }
   }
 }
