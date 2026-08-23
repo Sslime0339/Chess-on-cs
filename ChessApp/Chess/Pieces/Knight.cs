@@ -35,14 +35,16 @@ namespace Chess
     {
       List<Vector2> result = new List<Vector2>();
       
-      CheckEmptyOrEnemyAndAdd(position + new Vector2(-1, 2), result);
-      CheckEmptyOrEnemyAndAdd(position + new Vector2(1, 2), result);
-      CheckEmptyOrEnemyAndAdd(position + new Vector2(2, 1), result);
-      CheckEmptyOrEnemyAndAdd(position + new Vector2(2, -1), result);
-      CheckEmptyOrEnemyAndAdd(position + new Vector2(1, -2), result);
-      CheckEmptyOrEnemyAndAdd(position + new Vector2(-1, -2), result);
-      CheckEmptyOrEnemyAndAdd(position + new Vector2(-2, -1), result);
-      CheckEmptyOrEnemyAndAdd(position + new Vector2(-2, 1), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(-1, 2), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(1, 2), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(2, 1), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(2, -1), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(1, -2), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(-1, -2), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(-2, -1), result);
+      CheckEmptyOrEnemyAndAdd(_position + new Vector2(-2, 1), result);
+      
+      return result;
     }
   }
 }
