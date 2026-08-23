@@ -108,6 +108,15 @@ namespace Chess
         position.Y >= 0 && position.Y < 8);
     }
     
+    protected bool OnBoardAndAdd(Vector2 position, List<Vector2> list)
+    {
+      if (OnBoard(position))
+      {
+        list.Add(Position);
+        return true;
+      }
+      return false;
+    }
     
     protected void ScanDirectionAndAdd(Vector2 start, Vector2 step, List<Vector2> list)
     {

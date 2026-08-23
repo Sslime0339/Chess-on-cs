@@ -58,9 +58,10 @@ namespace Chess
       else 
         forward = new Vector2(0, -1);
       
-      result.Add(_position + forward + new Vector2(1, 0));
       
-      result.Add(_position + forward + new Vector2(-1, 0));
+      OnBoardAndAdd(_position + forward + new Vector2(1, 0), result);
+      
+      OnBoardAndAdd(_position + forward + new Vector2(-1, 0), result);
       
       return result;
     }
