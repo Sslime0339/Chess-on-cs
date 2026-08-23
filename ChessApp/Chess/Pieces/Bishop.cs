@@ -22,14 +22,13 @@ namespace Chess
     // TODO:
     public override List<Vector2> GetAllMoves()
     {
-      List<Vector2> result = new List<Vector2>();
-      
+      return GetDiagonals(_position);
     }
     
     // TODO:
     public override List<Vector2> GetAttackedPositions()
     {
-      return null;
+      return GetDiagonals(_position);
     }
   }
 }

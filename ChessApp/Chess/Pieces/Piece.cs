@@ -109,5 +109,40 @@ namespace Chess
     }
     
     
+    protected void ScanDirectionAndAdd(Vector2 start, Vector2 step, List<Vector2> list)
+    {
+      Vector2 currentPosition = start;
+      while (CheckEmpty(currentPosition))
+      {
+        currentPosition += step;
+        CheckEmptyAndAdd(currentPosition, list);
+        CheckEnemyAndAdd(currentPosition, list);
+      }
+    }
+    
+    protected List<Vector2> GetOrthogonalLines(Vector2 start)
+    {
+      List<Vector2> result = new List<Vector2>();
+      
+      ScanDirectionAndAdd(start, new Vector2(1, 0), result);
+      ScanDirectionAndAdd(start, new Vector2(-1, 0), result);
+      ScanDirectionAndAdd(start, new Vector2(0, 1), result);
+      ScanDirectionAndAdd(start, new Vector2(0, -1), result);
+      
+      return result;
+    }
+    
+    protected List<Vector2> GetDiagonals(Vector2 start)
+    {
+      List<Vector2> result = new List<Vector2>();
+      
+      ScanDirectionAndAdd(start, new Vector2(1, 1), result);
+      ScanDirectionAndAdd(start, new Vector2(1, -1), result);
+      ScanDirectionAndAdd(start, new Vector2(-1, 1), result);
+      ScanDirectionAndAdd(start, new Vector2(-1, -1), result);
+      
+      return result;
+    }
+    
   }
 }
