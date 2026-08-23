@@ -21,13 +21,20 @@ namespace Chess
     // TODO:
     public override List<Vector2> GetAllMoves()
     {
-      return null;
+      return GetAllQueenMove();
     }
     
     // TODO:
     public override List<Vector2> GetAttackedPositions()
     {
-      return null;
+      return GetAllQueenMove();
+    }
+    
+    private List<Vector2> GetAllQueenMove()
+    {
+      List<Vector2> result = GetOrthogonalLines(_position);
+      result.AddRange(GetDiagonals(_position));
+      return result;
     }
   }
 }
