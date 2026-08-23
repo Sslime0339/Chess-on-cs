@@ -29,10 +29,27 @@ namespace Chess
       _fistMove = fistMove;
     }
     
+    public abstract List<Vector2> GetAllMoves();
     
-    public abstract List<Vector2> GetValidMoves();
+    public abstract List<Vector2> GetAttackedPositions();
     
-    public abstract List<Vector2> GetAttackedSquares();
+    
+    public List<Vector2> GetValidMoves()
+    {
+      List<Vector2> allMoves = GetAllMoves();
+      List<Vector2> validMoves = new List<Vector2>();
+      
+      foreach (Vector2 move in allMoves)
+      {
+        if (!_board.WouldLeaveKingInCheck(_position, move))
+        {
+          validMoves.Add(move);
+        }
+      }
+      
+      return validMoves;
+    }
+    
     
     
     
@@ -67,10 +84,21 @@ namespace Chess
       return false;
     }
     
+    protected bool CheckEmptyOrEnemyAndAdd(Vector2 position, List<Vector2> list)
+    {
+      if (CheckEmpty(position) || CheckEnemy(position))
+      {
+        list.Add(position);
+        return true;
+      }
+      return false;
+    }
+    
     protected bool OnBoard(Vector2 position)
     {
       return (position.X >= 0 && position.X < 8 &&
         position.Y >= 0 && position.Y < 8);
     }
+    
   }
 }

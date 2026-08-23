@@ -11,7 +11,7 @@ namespace Chess
     
     public bool IsEmpty => _piece == null;
     
-    public bool IsAttacked { get; set; }
+    //public bool IsAttacked { get; set; }
     
     // хз вроде не нужен
     //public readonly Vector2 position;

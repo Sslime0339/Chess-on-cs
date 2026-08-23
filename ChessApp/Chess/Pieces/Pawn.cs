@@ -14,7 +14,7 @@ namespace Chess
     }
     
     // TODO:
-    public override List<Vector2> GetValidMoves()
+    public override List<Vector2> GetAllMoves()
     {
       List<Vector2> result = new List<Vector2>();
       
@@ -43,7 +43,7 @@ namespace Chess
     }
     
     // TODO:
-    public override List<Vector2> GetAttackedSquares()
+    public override List<Vector2> GetAttackedPositions()
     {
       List<Vector2> result = new List<Vector2>();
       
