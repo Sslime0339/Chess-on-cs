@@ -99,16 +99,44 @@ namespace Chess
       return null;
     }
     
+    public void UpdateAttackedSquares()
+    {
+      for (int i = 0; i < 8; i++)
+      {
+        for (int j = 0; j < 8; j++)
+        {
+          this[i, j].ResetAttacked();
+        }
+      }
+      
+      
+      foreach (PieceColor color in {PieceColor.White, PieceColor.Black})
+      {
+        foreach (Piese piese in GetPiece(color))
+        {
+          foreach (Vector2 attackedPosition in piese.GetAttackedPositions())
+          {
+            this[attackedPosition].SetAttacked(color)
+          }
+        }
+      }
+    }
+    
     public bool IsKingCheck(PieceColor kingColor)
     {
       PieceColor opponentColor = kingColor == PieceColor.White ? PieceColor.Black : PieceColor.White;
       Piece king = GetKing(kingColor);
+      
+      return this[king.Position].IsAttacked(opponentColor);
+      
+      /*
       foreach (Piece piece in GetPiece(opponentColor))
       {
         if (piece.GetAttackedPositions().Contains(king.Position))
           return true;
       }
       return false;
+      */
     }
     
     public bool WouldLeaveKingInCheck(Vector2 from, Vector2 to)

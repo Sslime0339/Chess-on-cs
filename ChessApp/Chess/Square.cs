@@ -11,7 +11,30 @@ namespace Chess
     
     public bool IsEmpty => _piece == null;
     
-    //public bool IsAttacked { get; set; }
+    public bool IsAttackedWhite { get; set; }
+    public bool IsAttackedBlack { get; set; }
+    
+    public bool IsAttacked(PieceColor attackedColor)
+    {
+      if (attackedColor == PieceColor.White)
+        return IsAttackedWhite;
+      else
+        return IsAttackedBlack;
+    }
+    
+    public bool SetAttacked(PieceColor attackedColor)
+    {
+      if (attackedColor == PieceColor.White)
+        IsAttackedWhite = true;
+      else
+        IsAttackedBlack = true;
+    }
+    
+    public void ResetAttacked()
+    {
+      IsAttackedWhite = false;
+      IsAttackedBlack = false;
+    }
     
     // хз вроде не нужен
     //public readonly Vector2 position;
