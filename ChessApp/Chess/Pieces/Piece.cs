@@ -115,8 +115,7 @@ namespace Chess
       while (CheckEmpty(currentPosition))
       {
         currentPosition += step;
-        CheckEmptyAndAdd(currentPosition, list);
-        CheckEnemyAndAdd(currentPosition, list);
+        CheckEmptyOrEnemyAndAdd(currentPosition, list);
       }
     }
     
