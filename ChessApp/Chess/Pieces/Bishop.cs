@@ -8,14 +8,14 @@ namespace Chess
   {
     
     
-    public Bishop(Vector2 position, PieceColor color, Chessboard board, bool fistMove = true) : base(position, color, board, PieceType.Bishop, fistMove)
+    public Bishop(Vector2 position, PieceColor color, Chessboard board, bool firstMove = true) : base(position, color, board, PieceType.Bishop, firstMove)
     {
       
     }
     
     public override Piece Clone(Chessboard newBoard)
     {
-      return new Bishop(_position, color, newBoard, _fistMove);
+      return new Bishop(_position, color, newBoard, _firstMove);
     }
     
     

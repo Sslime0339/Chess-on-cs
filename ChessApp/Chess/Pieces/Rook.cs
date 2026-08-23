@@ -7,14 +7,14 @@ namespace Chess
   class Rook : Piece
   {
     
-    public Rook(Vector2 position, PieceColor color, Chessboard board, bool fistMove = true) : base(position, color, board, PieceType.Rook, fistMove)
+    public Rook(Vector2 position, PieceColor color, Chessboard board, bool firstMove = true) : base(position, color, board, PieceType.Rook, firstMove)
     {
       
     }
     
     public override Piece Clone(Chessboard newBoard)
     {
-      return new Rook(_position, color, newBoard, _fistMove);
+      return new Rook(_position, color, newBoard, _firstMove);
     }
     
     // TODO:

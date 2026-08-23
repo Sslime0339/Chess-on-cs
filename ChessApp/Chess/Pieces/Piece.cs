@@ -12,21 +12,21 @@ namespace Chess
     protected Chessboard _board;
     public Chessboard Board => _board;
     
-    protected bool _fistMove;
-    public bool FistMove => _fistMove;
+    protected bool _firstMove;
+    public bool FirstMove => _firstMove;
     
     public readonly PieceColor color;
     
     public readonly PieceType type;
     
     
-    public Piece(Vector2 position, PieceColor color, Chessboard board, PieceType type, bool fistMove = true)
+    public Piece(Vector2 position, PieceColor color, Chessboard board, PieceType type, bool firstMove = true)
     {
       _position = position;
       this.color = color;
       _board = board;
       this.type = type;
-      _fistMove = fistMove;
+      _firstMove = firstMove;
     }
     
     public abstract Piece Clone(Chessboard newBoard);

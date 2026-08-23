@@ -8,14 +8,14 @@ namespace Chess
   {
     
     
-    public Pawn(Vector2 position, PieceColor color, Chessboard board, bool fistMove = true) : base(position, color, board, PieceType.Pawn, fistMove)
+    public Pawn(Vector2 position, PieceColor color, Chessboard board, bool firstMove = true) : base(position, color, board, PieceType.Pawn, firstMove)
     {
       
     }
     
     public override Piece Clone(Chessboard newBoard)
     {
-      return new Pawn(_position, color, newBoard, _fistMove);
+      return new Pawn(_position, color, newBoard, _firstMove);
     }
     
     // TODO:
@@ -34,7 +34,7 @@ namespace Chess
       {
         
         // проверено две клетки перед пешкой
-        if (_fistMove && CheckEmpty(_position + forward * 2))
+        if (_firstMove && CheckEmpty(_position + forward * 2))
         {
           result.Add(_position + forward * 2);
         }
