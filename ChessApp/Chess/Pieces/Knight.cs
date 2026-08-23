@@ -8,10 +8,16 @@ namespace Chess
   {
     
     
-    public Knight(Vector2 position, PieceColor color, Chessboard board) : base(position, color, board, PieceType.Knight)
+    public Knight(Vector2 position, PieceColor color, Chessboard board, bool fistMove = true) : base(position, color, board, PieceType.Knight, fistMove)
     {
       
     }
+    
+    public override Piece Clone(Chessboard newBoard)
+    {
+      return new Knight(_position, color, newBoard, _fistMove);
+    }
+    
     
     // TODO:
     public override List<Vector2> GetAllMoves()

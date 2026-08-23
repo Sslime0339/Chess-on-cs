@@ -29,6 +29,9 @@ namespace Chess
       _fistMove = fistMove;
     }
     
+    public abstract Piece Clone(Chessboard newBoard);
+    
+    
     public abstract List<Vector2> GetAllMoves();
     
     public abstract List<Vector2> GetAttackedPositions();

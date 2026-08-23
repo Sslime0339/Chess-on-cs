@@ -22,7 +22,7 @@ namespace Chess
         return IsAttackedBlack;
     }
     
-    public bool SetAttacked(PieceColor attackedColor)
+    public void SetAttacked(PieceColor attackedColor)
     {
       if (attackedColor == PieceColor.White)
         IsAttackedWhite = true;
@@ -43,6 +43,19 @@ namespace Chess
     {
       _piece = piece;
     }
+    
+    
+    public Square Clone(Chessboard newBoard)
+    {
+      Square newSquare = new Square();
+      if (!IsEmpty)
+        newSquare.AddPiece(_piece.Clone(newBoard));
+      newSquare.IsAttackedWhite = IsAttackedWhite;
+      newSquare.IsAttackedBlack = IsAttackedBlack;
+      
+      return newSquare;
+    }
+    
     
     
     public SquareInfo GetSquareInfo()

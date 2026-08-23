@@ -13,6 +13,12 @@ namespace Chess
       
     }
     
+    public override Piece Clone(Chessboard newBoard)
+    {
+      return new Bishop(_position, color, newBoard, _fistMove);
+    }
+    
+    
     // TODO:
     public override List<Vector2> GetAllMoves()
     {

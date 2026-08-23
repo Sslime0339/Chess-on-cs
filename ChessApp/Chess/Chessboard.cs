@@ -66,6 +66,23 @@ namespace Chess
       AddPiece(new King(new Vector2(4, 7), PieceColor.Black, this));
     }
     
+    private Chessboard(Chessboard boardToCopy)
+    {
+      _board = new Square[8, 8];
+      
+      for (int i = 0; i < 8; i++)
+      {
+        for (int j = 0; j < 8; j++)
+        {
+          _board[i, j] = boardToCopy[i, j].Clone(this);
+        }
+      }
+    }
+    
+    public Chessboard Clone()
+    {
+      return new Chessboard(this);
+    }
     
     public void AddPiece(Piece piece)
     {
@@ -110,13 +127,13 @@ namespace Chess
       }
       
       
-      foreach (PieceColor color in {PieceColor.White, PieceColor.Black})
+      foreach (PieceColor color in new[] {PieceColor.White, PieceColor.Black})
       {
-        foreach (Piese piese in GetPiece(color))
+        foreach (Piece piese in GetPiece(color))
         {
           foreach (Vector2 attackedPosition in piese.GetAttackedPositions())
           {
-            this[attackedPosition].SetAttacked(color)
+            this[attackedPosition].SetAttacked(color);
           }
         }
       }
