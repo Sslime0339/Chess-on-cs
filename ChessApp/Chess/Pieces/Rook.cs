@@ -20,13 +20,13 @@ namespace Chess
     // TODO:
     public override List<Vector2> GetAllMoves()
     {
-      return null;
+      return GetOrthogonalLines(_position);
     }
     
     // TODO:
     public override List<Vector2> GetAttackedPositions()
     {
-      return null;
+      return GetOrthogonalLines(_position);
     }
   }
 }
