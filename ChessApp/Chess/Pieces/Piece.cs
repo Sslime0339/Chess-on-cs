@@ -44,7 +44,7 @@ namespace Chess
       
       foreach (Vector2 move in allMoves)
       {
-        if (!_board.WouldLeaveKingInCheck(_position, move))
+        if (!_board.WouldLeaveKingInCheck(_position, move, color))
         {
           validMoves.Add(move);
         }
@@ -54,6 +54,11 @@ namespace Chess
     }
     
     
+    public void AfterMove(Vector2 newPosition)
+    {
+      _firstMove = false;
+      _position = newPosition;
+    }
     
     
     

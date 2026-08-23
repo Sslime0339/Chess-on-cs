@@ -44,6 +44,13 @@ namespace Chess
       _piece = piece;
     }
     
+    public Piece RemovePiece()
+    {
+      Piece piece = _piece;
+      _piece = null;
+      return piece;
+    }
+    
     
     public Square Clone(Chessboard newBoard)
     {

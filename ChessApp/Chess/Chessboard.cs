@@ -64,6 +64,10 @@ namespace Chess
       AddPiece(new Bishop(new Vector2(5, 7), PieceColor.Black, this));
       AddPiece(new Queen(new Vector2(3, 7), PieceColor.Black, this));
       AddPiece(new King(new Vector2(4, 7), PieceColor.Black, this));
+      
+      
+      
+      UpdateAttackedSquares();
     }
     
     private Chessboard(Chessboard boardToCopy)
@@ -87,6 +91,14 @@ namespace Chess
     public void AddPiece(Piece piece)
     {
       _board[piece.Position.X, piece.Position.Y].AddPiece(piece);
+    }
+    
+    public void Move(Vector2 from, Vector2 to)
+    {
+      this[to].AddPiece(this[from].RemovePiece());
+      this[to].CurrentPiece.AfterMove(to);
+      
+      UpdateAttackedSquares();
     }
     
     public List<Piece> GetPiece(PieceColor color)
@@ -156,9 +168,11 @@ namespace Chess
       */
     }
     
-    public bool WouldLeaveKingInCheck(Vector2 from, Vector2 to)
+    public bool WouldLeaveKingInCheck(Vector2 from, Vector2 to, PieceColor color)
     {
-      return false;
+      Chessboard newBoard = this.Clone();
+      newBoard.Move(from, to);
+      return newBoard.IsKingCheck(color);
     }
     
     public SquareInfo[,] GetData()
