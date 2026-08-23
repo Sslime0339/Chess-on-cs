@@ -112,7 +112,7 @@ namespace Chess
     {
       if (OnBoard(position))
       {
-        list.Add(Position);
+        list.Add(position);
         return true;
       }
       return false;
@@ -121,11 +121,11 @@ namespace Chess
     protected void ScanDirectionAndAdd(Vector2 start, Vector2 step, List<Vector2> list)
     {
       Vector2 currentPosition = start;
-      while (CheckEmpty(currentPosition))
+      do
       {
         currentPosition += step;
         CheckEmptyOrEnemyAndAdd(currentPosition, list);
-      }
+      } while (CheckEmpty(currentPosition));
     }
     
     protected List<Vector2> GetOrthogonalLines(Vector2 start)
