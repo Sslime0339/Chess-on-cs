@@ -101,7 +101,7 @@ namespace Chess
             UpdateAttackedSquares();
         }
 
-        public List<Piece> GetPiece(PieceColor color)
+        public List<Piece> GetPieces(PieceColor color)
         {
             List<Piece> result = new List<Piece>();
             for (int i = 0; i < 8; i++)
@@ -141,7 +141,7 @@ namespace Chess
 
             foreach (PieceColor color in new[] { PieceColor.White, PieceColor.Black })
             {
-                foreach (Piece piese in GetPiece(color))
+                foreach (Piece piese in GetPieces(color))
                 {
                     foreach (Vector2 attackedPosition in piese.GetAttackedPositions())
                     {
