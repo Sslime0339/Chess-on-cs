@@ -1,12 +1,5 @@
 
 <Solution>
-  <Folder Name="/Заметки/">
-    <File Path=".notes/IDEAS.md" />
-    <File Path=".notes/IdeasAI Возвращение результатов хода.md" />
-    <File Path=".notes/IdeasAI избежать шах.md" />
-    <File Path=".notes/IdeasAI.md" />
-    <File Path=".notes/Reflection.md" />
-    <File Path=".notes/TODO.md" />
-  </Folder>
   <Project Path="ChessApp\ChessApp.csproj" />
+  <Project Path="ChessNotes/ChessNotes.shproj" Id="43e42b57-208a-4221-a1b6-d7ec083c2580" />
 </Solution>
