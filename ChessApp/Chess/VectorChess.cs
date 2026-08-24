@@ -4,13 +4,13 @@
 // TODO: ↓
 namespace Chess
 {
-  static class VectorChess
-  {
-    public static Vector2 NewVector(char File, int Rank)
+    static class VectorChess
     {
-      return new Vector2(0,0);
+        public static Vector2 NewVector(char File, int Rank)
+        {
+            return new Vector2(0, 0);
+        }
+
+
     }
-    
-    
-  }
 }

@@ -4,17 +4,17 @@
 
 namespace Chess
 {
-  enum MoveResult
-  {
-    IllegalMove,
-    Success,
-    PromotionRequired,
-    Check,
-    Checkmate,
-    Stalemate,
-    Draw
-    
-  }
+    enum MoveResult
+    {
+        IllegalMove,
+        Success,
+        PromotionRequired,
+        Check,
+        Checkmate,
+        Stalemate,
+        Draw
+
+    }
 }
 
 /*
