@@ -65,10 +65,6 @@ namespace Chess
 
             OnBoardAndAdd(_position + forward + new Vector2(-1, 0), result);
 
-            foreach (var vec in result)
-            {
-                Console.WriteLine($"позиция {_position}, атакует {vec}");
-            }
 
             return result;
         }

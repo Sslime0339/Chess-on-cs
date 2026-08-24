@@ -17,7 +17,7 @@ namespace ConsoleUI
                 Vector2 from;
                 Vector2 to;
                 bool isCorrect = ConsoleInputHandler.TryParseMove(input, out from, out to);
-                Console.WriteLine($"\nfrom {from}, to {to}, isCorrect {isCorrect}\n");
+                // Console.WriteLine($"\nfrom {from}, to {to}, isCorrect {isCorrect}\n");
                 if (isCorrect)
                 {
                     MoveResult moveResult = game.Move(from, to);

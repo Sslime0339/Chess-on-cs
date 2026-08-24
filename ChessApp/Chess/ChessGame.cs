@@ -40,18 +40,26 @@ namespace Chess
             {
                 _board.Move(from, to);
                 ChangeCurrentTurn();
-                Console.WriteLine(_board.IsKingCheck(PieceColor.White));
-                Console.WriteLine(_board.IsKingCheck(PieceColor.Black));
+                // Console.WriteLine(_board.IsKingCheck(PieceColor.White));
+                // Console.WriteLine(_board.IsKingCheck(PieceColor.Black));
 
-                DrawAttackedSquare(PieceColor.White);
-                DrawAttackedSquare(PieceColor.Black);
+                // DrawAttackedSquare(PieceColor.White);
+                // DrawAttackedSquare(PieceColor.Black);
 
                 return MoveResult.Success;
             }
+
+            if (validMoves.Count == 0)
+            {
+                _board.GetAllMoves();
+            }
+
+
             return MoveResult.IllegalMove;
             //return MoveResult.PromotionRequired;
         }
 
+        /*
         void DrawAttackedSquare(PieceColor color)
         {
             Console.WriteLine();
@@ -72,6 +80,7 @@ namespace Chess
                 Console.Write("\n");
             }
         }
+        */
 
 
         public SquareInfo[,] GetBoardData()
