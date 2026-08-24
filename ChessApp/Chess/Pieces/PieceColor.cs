@@ -4,9 +4,9 @@
 
 namespace Chess
 {
-  enum PieceColor
-  {
-    White,
-    Black
-  }
+    enum PieceColor
+    {
+        White,
+        Black
+    }
 }
