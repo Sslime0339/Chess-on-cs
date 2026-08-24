@@ -115,6 +115,18 @@ namespace Chess
             return result;
         }
 
+        public List<Vector2> GetAllValidMoves(PieceColor color)
+        {
+            List<Vector2> result = new List<Vector2>();
+
+            foreach (Piece piece in GetPieces(color))
+            {
+                result.AddRange(piece.GetValidMoves());
+            }
+
+            return result;
+        }
+
         public Piece GetKing(PieceColor color)
         {
             for (int i = 0; i < 8; i++)

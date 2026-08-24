@@ -39,6 +39,9 @@ namespace Chess
             if (validMoves.Contains(to))
             {
                 _board.Move(from, to);
+
+                // TODO: сделать прверку на шах и шахимат тут
+
                 ChangeCurrentTurn();
                 // Console.WriteLine(_board.IsKingCheck(PieceColor.White));
                 // Console.WriteLine(_board.IsKingCheck(PieceColor.Black));
@@ -51,7 +54,10 @@ namespace Chess
 
             if (validMoves.Count == 0)
             {
-                _board.GetAllMoves();
+                if (_board.GetAllValidMoves(_currentTurn).Count != 0)
+                    return MoveResult.IllegalMove;
+                //else if (_board.IsKingCheck(_currentTurn))
+                    //return MoveResult.
             }
 
 
