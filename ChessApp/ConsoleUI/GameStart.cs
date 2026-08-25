@@ -24,6 +24,7 @@ namespace ConsoleUI
                     Console.WriteLine($"\n{moveResult}");
                 }
             }
+            Draw.Chessboard(game.GetBoardData());
         }
     }
 }

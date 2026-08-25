@@ -11,6 +11,7 @@ namespace Chess
 
         private PieceColor _currentTurn;
         public PieceColor CurrentTurn => _currentTurn;
+        //public PieceColor OppositeTurn => GetOppositeColor(_currentTurn);
 
         private bool _isGameOver;
         public bool IsGameOver => _isGameOver;
@@ -40,9 +41,29 @@ namespace Chess
             {
                 _board.Move(from, to);
 
-                // TODO: сделать прверку на шах и шахимат тут
-
                 ChangeCurrentTurn();
+
+
+                // TODO: сделать прверку на шах и шахимат тут
+                if (_board.GetAllValidMoves(_currentTurn).Count == 0)
+                {
+                    _isGameOver = true;
+                    if (_board.IsKingCheck(_currentTurn))
+                    {
+                        return MoveResult.Checkmate;
+                    }
+                    else
+                    {
+                        return MoveResult.Stalemate;
+                    }
+                }
+                
+                if (_board.IsKingCheck(_currentTurn))
+                {
+                    return MoveResult.Check;
+                }
+
+
                 // Console.WriteLine(_board.IsKingCheck(PieceColor.White));
                 // Console.WriteLine(_board.IsKingCheck(PieceColor.Black));
 
@@ -97,13 +118,18 @@ namespace Chess
 
         private void ChangeCurrentTurn()
         {
-            if (_currentTurn == PieceColor.White)
+            _currentTurn = GetOppositeColor(_currentTurn);
+        }
+
+        private PieceColor GetOppositeColor(PieceColor color)
+        {
+            if (color == PieceColor.White)
             {
-                _currentTurn = PieceColor.Black;
+                return PieceColor.Black;
             }
             else
             {
-                _currentTurn = PieceColor.White;
+                return PieceColor.White;
             }
         }
     }
