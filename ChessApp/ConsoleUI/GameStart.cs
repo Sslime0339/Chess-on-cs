@@ -23,6 +23,10 @@ namespace ConsoleUI
                     MoveResult moveResult = game.Move(from, to);
                     Console.WriteLine($"\n{moveResult}");
                 }
+                else
+                {
+                    Console.WriteLine("Неправильный ввод");
+                }
             }
             Draw.Chessboard(game.GetBoardData());
         }
