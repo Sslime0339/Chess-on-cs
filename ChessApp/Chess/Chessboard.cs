@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-
+using System;
 
 
 
@@ -95,11 +95,19 @@ namespace Chess
 
         public void Move(Vector2 from, Vector2 to)
         {
+            this[from].CurrentPiece.BeforeMove(to);
+
+
+            // обновляем карту до того как пешка после перемещения добавит особую клетку для взятия на проходе
+            UpdateEnPassantTargetSquares();
+
             this[to].AddPiece(this[from].RemovePiece());
+
             this[to].CurrentPiece.AfterMove(to);
 
             UpdateAttackedSquares();
         }
+
 
         public List<Piece> GetPieces(PieceColor color)
         {
@@ -159,6 +167,18 @@ namespace Chess
                     {
                         this[attackedPosition].SetAttacked(color);
                     }
+                }
+            }
+        }
+
+        public void UpdateEnPassantTargetSquares()
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+
+                    _board[i, j].ResetEnPassantTarget();
                 }
             }
         }

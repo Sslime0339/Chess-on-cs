@@ -6,13 +6,32 @@ namespace Chess
 {
     class Square
     {
-        private Piece _piece;
-        public Piece CurrentPiece => _piece;
+        private Piece? _piece;
+        public Piece? CurrentPiece => _piece;
 
         public bool IsEmpty => _piece == null;
 
         public bool IsAttackedWhite { get; set; }
         public bool IsAttackedBlack { get; set; }
+
+        public bool EnPassantTarget { get; set; }
+
+        public Piece? EnPassantTargetPiece { get; set; }
+
+
+
+        public void ResetEnPassantTarget()
+        {
+            EnPassantTarget = false;
+            EnPassantTargetPiece = null;
+        }
+
+        public void SetEnPassantTarget(Piece piece)
+        {
+            EnPassantTarget = true;
+            EnPassantTargetPiece = piece;
+        }
+
 
         public bool IsAttacked(PieceColor attackedColor)
         {

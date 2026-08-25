@@ -16,6 +16,10 @@ namespace Chess
         private bool _isGameOver;
         public bool IsGameOver => _isGameOver;
 
+        private bool _promotionRequired;
+        public bool PromotionRequired => _promotionRequired;
+
+
 
         public ChessGame()
         {
@@ -27,6 +31,11 @@ namespace Chess
 
         public MoveResult Move(Vector2 from, Vector2 to)
         {
+            if (_isGameOver || _promotionRequired)
+            {
+                // TODO: 
+            }
+
             if (_board[from].IsEmpty)
                 return MoveResult.IllegalMove;
 
@@ -39,8 +48,12 @@ namespace Chess
 
             if (validMoves.Contains(to))
             {
+                //DrawEnPassantTargetSquare();
                 _board.Move(from, to);
 
+
+
+                //DrawEnPassantTargetSquare();
                 ChangeCurrentTurn();
 
 
@@ -108,7 +121,29 @@ namespace Chess
             }
         }
         */
+        /*
+        
+                void DrawEnPassantTargetSquare()
+                {
+                    Console.WriteLine();
+                    for (int i = 7; i >= 0; i--)
+                    {
+                        for (int j = 0; j < 8; j++)
+                        {
+                            if (_board[j, i].EnPassantTarget)
+                            {
+                                Console.Write("#");
+                            }
+                            else
+                            {
+                                Console.Write("•");
+                            }
 
+                        }
+                        Console.Write("\n");
+                    }
+                }
+        */
 
         public SquareInfo[,] GetBoardData()
         {

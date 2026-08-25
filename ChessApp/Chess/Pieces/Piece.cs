@@ -54,7 +54,12 @@ namespace Chess
         }
 
 
-        public void AfterMove(Vector2 newPosition)
+        public virtual void BeforeMove(Vector2 newPosition)
+        {
+
+        }
+
+        public virtual void AfterMove(Vector2 newPosition)
         {
             _firstMove = false;
             _position = newPosition;
