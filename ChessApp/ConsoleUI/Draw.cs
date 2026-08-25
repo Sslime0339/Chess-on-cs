@@ -1,6 +1,33 @@
 using Chess;
 using System;
 
+/*
+белые фигуры
+♔
+♕
+♖
+♗
+♘
+♙
+*/
+
+/*
+чёрные фигуры
+♚
+♛
+♜
+♝
+♞
+♟
+*/
+
+/*
+белый квадрат
+◻
+
+чёрный квадрат
+◼
+*/
 
 namespace ConsoleUI
 {
@@ -41,6 +68,9 @@ namespace ConsoleUI
             Console.Write("\n");
         }
 
+
+
+
         private static void DrawSquare(SquareInfo square, int x, int y)
         {
             if (square.IsEmpty == true)
@@ -52,69 +82,29 @@ namespace ConsoleUI
             }
             else if (square.Color == PieceColor.White)
             {
-                /* белые фигуры
-                ♔
-                ♕
-                ♖
-                ♗
-                ♘
-                ♙
-                */
                 switch (square.Piece)
                 {
-                    case PieceType.Pawn:
-                        Console.Write("♙");
-                        break;
-                    case PieceType.Knight:
-                        Console.Write("♘");
-                        break;
-                    case PieceType.Bishop:
-                        Console.Write("♗");
-                        break;
-                    case PieceType.Rook:
-                        Console.Write("♖");
-                        break;
-                    case PieceType.Queen:
-                        Console.Write("♕");
-                        break;
-                    case PieceType.King:
-                        Console.Write("♔");
-                        break;
+                    case PieceType.Pawn:    Console.Write("♙"); break;
+                    case PieceType.Knight:  Console.Write("♘"); break;
+                    case PieceType.Bishop:  Console.Write("♗"); break;
+                    case PieceType.Rook:    Console.Write("♖"); break;
+                    case PieceType.Queen:   Console.Write("♕"); break;
+                    case PieceType.King:    Console.Write("♔"); break;
                 }
             }
             else // чёрные фигуры
             {
-                /*
-                ♚
-                ♛
-                ♜
-                ♝
-                ♞
-                ♟
-                */
                 switch (square.Piece)
                 {
-                    case PieceType.Pawn:
-                        Console.Write("♟");
-                        break;
-                    case PieceType.Knight:
-                        Console.Write("♞");
-                        break;
-                    case PieceType.Bishop:
-                        Console.Write("♝");
-                        break;
-                    case PieceType.Rook:
-                        Console.Write("♜");
-                        break;
-                    case PieceType.Queen:
-                        Console.Write("♛");
-                        break;
-                    case PieceType.King:
-                        Console.Write("♚");
-                        break;
+                    case PieceType.Pawn:    Console.Write("♟"); break;
+                    case PieceType.Knight:  Console.Write("♞"); break;
+                    case PieceType.Bishop:  Console.Write("♝"); break;
+                    case PieceType.Rook:    Console.Write("♜"); break;
+                    case PieceType.Queen:   Console.Write("♛"); break;
+                    case PieceType.King:    Console.Write("♚"); break;
                 }
             }
-
         }
+
     }
 }
