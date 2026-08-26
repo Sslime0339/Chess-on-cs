@@ -9,8 +9,10 @@ namespace ConsoleUI
         public static bool TryParseMove(string input, out Vector2 from, out Vector2 to)
         {
             //нейронка
-            //TODO: расширить
-            //TODO: добавить просмотр куда может походить фигура
+            /*  TODO: расширить TryParseMove
+            добавить просмотр куда может походить фигура
+            
+            */
 
             from = new Vector2(0, 0);
             to = new Vector2(0, 0);

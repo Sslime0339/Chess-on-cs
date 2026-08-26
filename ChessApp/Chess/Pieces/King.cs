@@ -18,13 +18,13 @@ namespace Chess
         }
 
 
-        // TODO:
+
         public override List<Vector2> GetAllMoves()
         {
             return GetAllKingMove();
         }
 
-        // TODO:
+
         public override List<Vector2> GetAttackedPositions()
         {
             return GetAllKingMove();

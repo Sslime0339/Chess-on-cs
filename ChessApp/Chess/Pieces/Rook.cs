@@ -17,13 +17,13 @@ namespace Chess
             return new Rook(_position, color, newBoard, _firstMove);
         }
 
-        // TODO:
+
         public override List<Vector2> GetAllMoves()
         {
             return GetOrthogonalLines(_position);
         }
 
-        // TODO:
+
         public override List<Vector2> GetAttackedPositions()
         {
             return GetOrthogonalLines(_position);

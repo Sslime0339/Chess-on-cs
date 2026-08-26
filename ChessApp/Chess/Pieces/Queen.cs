@@ -18,13 +18,13 @@ namespace Chess
             return new Queen(_position, color, newBoard, _firstMove);
         }
 
-        // TODO:
+
         public override List<Vector2> GetAllMoves()
         {
             return GetAllQueenMove();
         }
 
-        // TODO:
+
         public override List<Vector2> GetAttackedPositions()
         {
             return GetAllQueenMove();

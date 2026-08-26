@@ -19,13 +19,13 @@ namespace Chess
         }
 
 
-        // TODO:
+
         public override List<Vector2> GetAllMoves()
         {
             return GetDiagonals(_position);
         }
 
-        // TODO:
+
         public override List<Vector2> GetAttackedPositions()
         {
             return GetDiagonals(_position);
