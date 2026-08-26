@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using System;
 
 
-
+// TODO: сделать сохранение игровой доски
 namespace Chess
 {
     class Chessboard
     {
         private Square[,] _board;
+
 
         public Square this[int x, int y]
         {
@@ -17,6 +18,7 @@ namespace Chess
             }
         }
 
+
         public Square this[Vector2 vec]
         {
             get
@@ -24,6 +26,8 @@ namespace Chess
                 return this[vec.X, vec.Y];
             }
         }
+
+
 
         public Chessboard()
         {
@@ -70,6 +74,7 @@ namespace Chess
             UpdateAttackedSquares();
         }
 
+
         private Chessboard(Chessboard boardToCopy)
         {
             _board = new Square[8, 8];
@@ -83,15 +88,19 @@ namespace Chess
             }
         }
 
+
+
         public Chessboard Clone()
         {
             return new Chessboard(this);
         }
 
+
         public void AddPiece(Piece piece)
         {
             _board[piece.Position.X, piece.Position.Y].AddPiece(piece);
         }
+
 
         public void Move(Vector2 from, Vector2 to)
         {
@@ -123,6 +132,22 @@ namespace Chess
             return result;
         }
 
+        
+        public bool TryGetPawnRequiringPromotion(PieceColor color, out Pawn pawnRequiringPromotion)
+        {
+            foreach (Piece piece in GetPieces(color))
+            {
+                if (piece is Pawn pawn && pawn.CanPromote())
+                {
+                    pawnRequiringPromotion = pawn;
+                    return true;
+                }
+            }
+            pawnRequiringPromotion = null;
+            return false;
+        }
+
+
         public List<Vector2> GetAllValidMoves(PieceColor color)
         {
             List<Vector2> result = new List<Vector2>();
@@ -134,6 +159,7 @@ namespace Chess
 
             return result;
         }
+
 
         public Piece GetKing(PieceColor color)
         {
@@ -147,6 +173,7 @@ namespace Chess
             }
             return null;
         }
+
 
         public void UpdateAttackedSquares()
         {
@@ -171,6 +198,7 @@ namespace Chess
             }
         }
 
+
         public void UpdateEnPassantTargetSquares()
         {
             for (int i = 0; i < 8; i++)
@@ -182,6 +210,7 @@ namespace Chess
                 }
             }
         }
+
 
         public bool IsKingCheck(PieceColor kingColor)
         {
@@ -200,12 +229,14 @@ namespace Chess
             */
         }
 
+
         public bool WouldLeaveKingInCheck(Vector2 from, Vector2 to, PieceColor color)
         {
             Chessboard newBoard = this.Clone();
             newBoard.Move(from, to);
             return newBoard.IsKingCheck(color);
         }
+
 
         public SquareInfo[,] GetData()
         {

@@ -6,7 +6,8 @@ namespace Chess
 {
     enum MoveResult
     {
-        IllegalMove,
+        GameOver,
+        IllegalMove, 
         Success,
         PromotionRequired,
         Check,
@@ -18,13 +19,17 @@ namespace Chess
 }
 
 /*
+
+    // Игра завершена
+    GameOver,
+
 // Ход невозможен (фигура так не ходит, мешают другие фигуры, или король под шахом)
     IllegalMove,   
 
     // Обычный успешный ход
     Success,       
     
-    PromotionRequired (Рекомендуется) — «требуется превращение». Самое точное название. Превращение для пешки
+    PromotionRequired (Рекомендуется) — «требуется превращение». Превращение для пешки
 
     // Ход успешный, и вражескому королю объявлен шах
     Check,         

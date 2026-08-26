@@ -13,6 +13,8 @@ namespace Chess
 
         }
 
+
+
         public override void BeforeMove(Vector2 newPosition)
         {
             if (_board[newPosition].EnPassantTarget)
@@ -23,6 +25,7 @@ namespace Chess
 
             base.BeforeMove(newPosition);
         }
+
 
         public override void AfterMove(Vector2 newPosition)
         {
@@ -38,6 +41,7 @@ namespace Chess
             base.AfterMove(newPosition);
         }
 
+
         public bool IsTwoSquarePawnMove(Vector2 startPosition, Vector2 endPosition)
         {
             if (Math.Abs(startPosition.Y - endPosition.Y) == 2)
@@ -47,12 +51,13 @@ namespace Chess
             return false;
         }
 
+
         public override Piece Clone(Chessboard newBoard)
         {
             return new Pawn(_position, color, newBoard, _firstMove);
         }
 
-        // TODO:
+
         public override List<Vector2> GetAllMoves()
         {
             List<Vector2> result = new List<Vector2>();
@@ -77,7 +82,7 @@ namespace Chess
             return result;
         }
 
-        // TODO:
+
         public override List<Vector2> GetAttackedPositions()
         {
             List<Vector2> result = new List<Vector2>();
@@ -92,6 +97,16 @@ namespace Chess
             return result;
         }
 
+
+        public bool CanPromote()
+        {
+            // по сути мы проверяем позицию перед пешкой
+            // если позиция за доской, то пешка на последней клетке
+
+            return !OnBoard(_position + GetForward());
+        }
+
+
         public Vector2 GetForward()
         {
             Vector2 forward;
@@ -101,6 +116,7 @@ namespace Chess
                 forward = new Vector2(0, -1);
             return forward;
         }
+
 
         public bool CheckEnemyOrEnPassantTarget(Vector2 position, List<Vector2> list)
         {

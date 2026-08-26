@@ -1,7 +1,11 @@
 using System.Collections.Generic;
-
-
 using System;
+using ChessApp.Chess;
+
+
+
+
+// TODO: Сделать сохранение игры
 
 namespace Chess
 {
@@ -19,6 +23,7 @@ namespace Chess
         private bool _promotionRequired;
         public bool PromotionRequired => _promotionRequired;
 
+        private Pawn _pawnPromotionRequired;
 
 
         public ChessGame()
@@ -31,10 +36,12 @@ namespace Chess
 
         public MoveResult Move(Vector2 from, Vector2 to)
         {
-            if (_isGameOver || _promotionRequired)
-            {
-                // TODO: 
-            }
+            if (_isGameOver)
+                return MoveResult.GameOver;
+
+            if (_promotionRequired)
+                return MoveResult.PromotionRequired;
+            
 
             if (_board[from].IsEmpty)
                 return MoveResult.IllegalMove;
@@ -50,6 +57,25 @@ namespace Chess
             {
                 //DrawEnPassantTargetSquare();
                 _board.Move(from, to);
+
+
+                // TODO: сделать проверку что пешка дошла до конца
+
+                // короче обращаюсь к доске на проверку какая пешка дошла до конца 
+                // сдругой стороны почему доска должна заботиться о каких-то пешках
+                // хотя она находит короля, то есть она уже реагирует на конкретные фигуры
+                // ну так и доска конкретна
+
+                // всё доска ищет пешки которые дошли до конца
+
+                // главное сторона не меняеться, она поменяеться после преобразовании пешки
+                if (_board.TryGetPawnRequiringPromotion(_currentTurn, out Pawn pawn))
+                {
+                    _pawnPromotionRequired = pawn;
+                    _promotionRequired = true;
+                    return MoveResult.PromotionRequired;
+                }
+
 
 
 
@@ -97,6 +123,29 @@ namespace Chess
 
             return MoveResult.IllegalMove;
             //return MoveResult.PromotionRequired;
+        }
+
+
+        public void ToPromote(PromotionPiece promotionPiece)
+        {
+            if (!_promotionRequired) return;
+
+            Vector2 pos = _pawnPromotionRequired.Position;
+            PieceColor color = _pawnPromotionRequired.color;
+
+            switch (promotionPiece)
+            {
+                case PromotionPiece.Queen:  _board.AddPiece(new Queen(pos, color, _board, false));  break;
+                case PromotionPiece.Rook:   _board.AddPiece(new Rook(pos, color, _board, false));   break;
+                case PromotionPiece.Bishop: _board.AddPiece(new Bishop(pos, color, _board, false)); break;
+                case PromotionPiece.Knight: _board.AddPiece(new Knight(pos, color, _board, false)); break;
+            }
+
+            _promotionRequired = false;
+            _pawnPromotionRequired = null;
+
+            // после изменения пешки передаём ход противнику
+            ChangeCurrentTurn();
         }
 
         /*
