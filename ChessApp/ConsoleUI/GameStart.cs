@@ -22,6 +22,11 @@ namespace ConsoleUI
                 {
                     MoveResult moveResult = game.Move(from, to);
                     Console.WriteLine($"\n{moveResult}");
+
+                    if (game.PromotionRequired)
+                    {
+                        Promotion();
+                    }
                 }
                 else
                 {
@@ -29,6 +34,20 @@ namespace ConsoleUI
                 }
             }
             Draw.Chessboard(game.GetBoardData());
+
+            void Promotion()
+            {
+                Console.WriteLine("Напишите в какую фигуру превратиться пешка\n(Q - ферзь, R - ладья, B - слон, K - конь)\n");
+                string input = Console.ReadLine();
+                PromotionPiece promotionPiece;
+                while (!ConsoleInputHandler.TryParsePromotionPiece(input, out promotionPiece))
+                {
+                    Console.WriteLine("Неверный ввод");
+                    input = Console.ReadLine();
+                }
+                game.ToPromote(promotionPiece);
+            }
         }
+
     }
 }

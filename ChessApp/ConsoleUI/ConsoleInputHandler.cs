@@ -2,6 +2,7 @@ using Chess;
 
 
 
+
 namespace ConsoleUI
 {
     static class ConsoleInputHandler
@@ -48,6 +49,33 @@ namespace ConsoleUI
 
             from = new Vector2(fromX, fromY);
             to = new Vector2(toX, toY);
+
+            return true;
+        }
+
+
+        public static bool TryParsePromotionPiece(string input, out PromotionPiece promotionPiece)
+        {
+            promotionPiece = PromotionPiece.Queen;
+
+
+            input = input.Replace(" ", "");
+
+
+            if (string.IsNullOrWhiteSpace(input) || input.Length != 1)
+                return false;
+
+            input = input.ToLower();
+
+
+            switch (input)
+            {
+                case "q": promotionPiece = PromotionPiece.Queen;    break;
+                case "r": promotionPiece = PromotionPiece.Rook;     break;
+                case "b": promotionPiece = PromotionPiece.Bishop;   break;
+                case "k": promotionPiece = PromotionPiece.Knight;   break;
+                default: return false;
+            }
 
             return true;
         }

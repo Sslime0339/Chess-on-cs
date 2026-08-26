@@ -2,7 +2,7 @@
 
 
 
-namespace ChessApp.Chess
+namespace Chess
 {
     enum PromotionPiece
     {
