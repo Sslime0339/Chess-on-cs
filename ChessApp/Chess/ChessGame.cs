@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System;
 
 
-
+// TODO: Сделать поддержку Portable Game Notation (PGN) (стандартная запись шахматной игры)
 
 // TODO: Сделать сохранение игры
 
@@ -82,7 +82,7 @@ namespace Chess
                 ChangeCurrentTurn();
 
 
-                // TODO: сделать прверку на шах и шахимат тут
+
                 if (_board.GetAllValidMoves(_currentTurn).Count == 0)
                 {
                     _isGameOver = true;

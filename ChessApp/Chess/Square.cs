@@ -89,7 +89,7 @@ namespace Chess
             if (_piece == null)
                 return SquareInfo.EmptySquare();
             else
-                return new SquareInfo(_piece.type, _piece.color);
+                return new SquareInfo(_piece.type, _piece.color, _piece.FirstMove);
 
         }
     }
