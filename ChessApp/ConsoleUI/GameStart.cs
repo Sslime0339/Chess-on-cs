@@ -25,7 +25,7 @@ namespace ConsoleUI
 
                     if (game.PromotionRequired)
                     {
-                        Promotion();
+                        Promotion(game);
                     }
                 }
                 else
@@ -35,18 +35,19 @@ namespace ConsoleUI
             }
             Draw.Chessboard(game.GetBoardData());
 
-            void Promotion()
+        }
+            
+        static void Promotion(ChessGame game)
+        {
+            Console.WriteLine("Напишите в какую фигуру превратиться пешка\n(Q - ферзь, R - ладья, B - слон, K - конь)\n");
+            string input = Console.ReadLine();
+            PromotionPiece promotionPiece;
+            while (!ConsoleInputHandler.TryParsePromotionPiece(input, out promotionPiece))
             {
-                Console.WriteLine("Напишите в какую фигуру превратиться пешка\n(Q - ферзь, R - ладья, B - слон, K - конь)\n");
-                string input = Console.ReadLine();
-                PromotionPiece promotionPiece;
-                while (!ConsoleInputHandler.TryParsePromotionPiece(input, out promotionPiece))
-                {
-                    Console.WriteLine("Неверный ввод");
-                    input = Console.ReadLine();
-                }
-                game.ToPromote(promotionPiece);
+                Console.WriteLine("Неверный ввод");
+                input = Console.ReadLine();
             }
+            game.ToPromote(promotionPiece);
         }
 
     }
