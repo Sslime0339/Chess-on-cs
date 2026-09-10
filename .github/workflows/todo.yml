@@ -2,14 +2,21 @@ name: Workflow для поиска TODO
 on:
   push:
     branches:
-      - main # или master, смотря как называется ваша главная ветка
+      - main
+
+# Явно разрешаем только чтение кода и управление задачами
+permissions:
+  contents: read
+  issues: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Поиск TODO и создание Issues
-        uses: alfeugds/todo-actions@v2.1.2
+
+      - name: Поиск TODO и создание задач
+        uses: alstr/todo-to-issue-action@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CLOSE_ISSUES: true # Автоматически закрывать задачу, если TODO удален из кода
