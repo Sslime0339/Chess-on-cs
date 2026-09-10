@@ -1,0 +1,15 @@
+name: Workflow для поиска TODO
+on:
+  push:
+    branches:
+      - main # или master, смотря как называется ваша главная ветка
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Поиск TODO и создание Issues
+        uses: alfeugds/todo-actions@v2.1.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
