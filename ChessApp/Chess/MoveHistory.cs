@@ -4,7 +4,7 @@
 
 namespace Chess
 {
-    // TODO:
+    // TODO: MoveHistory.
     class MoveHistory
     {
 

@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System;
 
 
-// TODO: Сделать поддержку Portable Game Notation (PGN) (стандартная запись шахматной игры)
+// TODO: Сделать поддержку Portable Game Notation (PGN) (стандартная запись шахматной игры).
 
-// TODO: Сделать сохранение игры
+// TODO: Сделать сохранение игры.
 
 namespace Chess
 {

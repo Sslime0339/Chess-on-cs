@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System;
 
 
-// TODO: сделать сохранение игровой доски
+// TODO: Сделать сохранение игровой доски.
 namespace Chess
 {
     class Chessboard
