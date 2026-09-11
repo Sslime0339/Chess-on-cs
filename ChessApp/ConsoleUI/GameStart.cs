@@ -9,6 +9,8 @@ namespace ConsoleUI
         public static void Start()
         {
             ChessGame game = new ChessGame();
+
+            Console.Write("\n");
             while (!game.IsGameOver)
             {
                 Draw.Chessboard(game.GetBoardData());

@@ -214,5 +214,14 @@ namespace Chess
                 return PieceColor.White;
             }
         }
+
+
+        public Move GetLastMove()
+        {
+            // TODO: Сделать функцию которая возвращает полную информацию о ходе, и придумать ей нормальное название
+            return new Move();
+            
+        }
+        
     }
 }
