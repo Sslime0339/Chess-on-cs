@@ -21,6 +21,7 @@ namespace Chess
 
         public override List<Vector2> GetAllMoves()
         {
+            // TODO: Сделать рокировку короля
             return GetAllKingMove();
         }
 
