@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System;
-using Sslime0339.Chess;
 
 
 namespace Sslime0339.Chess.Pieces

@@ -1,5 +1,4 @@
 using Sslime0339.Chess;
-using Sslime0339.Chess.Pieces;
 using System;
 
 /*

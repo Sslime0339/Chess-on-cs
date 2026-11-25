@@ -1,5 +1,3 @@
-using Sslime0339.Chess.Pieces;
-
 namespace Sslime0339.Chess
 {
 
