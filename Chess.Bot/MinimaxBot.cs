@@ -149,10 +149,18 @@ namespace Sslime0339.Chess.Bot
         private int EvaluateBoard(Chessboard board, PieceColor perspective)
         {
             int score = 0;
+
             foreach (Piece p in board.GetPieces(PieceColor.White))
+            {
                 score += GetPieceValue(p.type);
+                score += PieceSquareTables.GetPositionalBonus(p.type, PieceColor.White, p.Position);
+            }
+
             foreach (Piece p in board.GetPieces(PieceColor.Black))
+            {
                 score -= GetPieceValue(p.type);
+                score -= PieceSquareTables.GetPositionalBonus(p.type, PieceColor.Black, p.Position);
+            }
 
             return perspective == PieceColor.White ? score : -score;
         }
@@ -170,24 +178,31 @@ namespace Sslime0339.Chess.Bot
 
         private List<BotMove> GenerateAllMoves(Chessboard board, PieceColor color)
         {
-            var result = new List<BotMove>();
+            var captures = new List<BotMove>();
+            var quietMoves = new List<BotMove>();
+
             foreach (Piece piece in board.GetPieces(color))
             {
                 foreach (Vector2 target in piece.GetValidMoves())
                 {
-                    // Если пешка доходит до последней горизонтали — генерируем превращение
+                    bool isCapture = !board[target].IsEmpty || (piece.type == PieceType.Pawn && board[target].EnPassantTarget);
+                    var targetList = isCapture ? captures : quietMoves;
+
                     if (piece.type == PieceType.Pawn && (target.Y == 7 || target.Y == 0))
                     {
-                        result.Add(new BotMove(piece.Position, target, PromotionPiece.Queen));
-                        result.Add(new BotMove(piece.Position, target, PromotionPiece.Knight));
+                        targetList.Add(new BotMove(piece.Position, target, PromotionPiece.Queen));
+                        targetList.Add(new BotMove(piece.Position, target, PromotionPiece.Knight));
                     }
                     else
                     {
-                        result.Add(new BotMove(piece.Position, target));
+                        targetList.Add(new BotMove(piece.Position, target));
                     }
                 }
             }
-            return result;
+
+            // Взятия ставим в начало списка для максимальной эффективности Альфа-Бета отсечения
+            captures.AddRange(quietMoves);
+            return captures;
         }
 
         private void ApplyMove(Chessboard board, BotMove move)
