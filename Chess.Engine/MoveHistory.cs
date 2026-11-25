@@ -4,5 +4,8 @@ namespace Sslime0339.Chess
     class MoveHistory
     {
 
+        private List<Move> _moveHistory;
+
+        // TODO: вернуть список ходов, который только для чтения
     }
 }

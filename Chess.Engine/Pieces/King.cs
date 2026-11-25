@@ -22,6 +22,7 @@ namespace Sslime0339.Chess.Pieces
 
         public override List<Vector2> GetAllMoves()
         {
+            // TODO: Сделать рокировку короля
             return GetAllKingMove();
         }
 
