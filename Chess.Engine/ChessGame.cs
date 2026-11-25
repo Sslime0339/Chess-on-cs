@@ -79,39 +79,8 @@ namespace Sslime0339.Chess
                 }
 
 
+                return FinalizeTurn();
 
-
-                //DrawEnPassantTargetSquare();
-                ChangeCurrentTurn();
-
-
-
-                if (_board.GetAllValidMoves(_currentTurn).Count == 0)
-                {
-                    _isGameOver = true;
-                    if (_board.IsKingCheck(_currentTurn))
-                    {
-                        return MoveResult.Checkmate;
-                    }
-                    else
-                    {
-                        return MoveResult.Stalemate;
-                    }
-                }
-                
-                if (_board.IsKingCheck(_currentTurn))
-                {
-                    return MoveResult.Check;
-                }
-
-
-                // Console.WriteLine(_board.IsKingCheck(PieceColor.White));
-                // Console.WriteLine(_board.IsKingCheck(PieceColor.Black));
-
-                // DrawAttackedSquare(PieceColor.White);
-                // DrawAttackedSquare(PieceColor.Black);
-
-                return MoveResult.Success;
             }
 
             if (validMoves.Count == 0)
@@ -128,9 +97,41 @@ namespace Sslime0339.Chess
         }
 
 
-        public void ToPromote(PromotionPiece promotionPiece)
+        
+        private MoveResult FinalizeTurn()
         {
-            if (!_promotionRequired) return;
+            ChangeCurrentTurn();
+
+            if (_board.GetAllValidMoves(_currentTurn).Count == 0)
+            {
+                _isGameOver = true;
+                if (_board.IsKingCheck(_currentTurn))
+                {
+                    return MoveResult.Checkmate;
+                }
+                else
+                {
+                    return MoveResult.Stalemate;
+                }
+            }
+
+            if (_board.IsKingCheck(_currentTurn))
+            {
+                return MoveResult.Check;
+            }
+
+            return MoveResult.Success;
+        }
+
+
+
+
+
+
+
+        public MoveResult ToPromote(PromotionPiece promotionPiece)
+        {
+            if (!_promotionRequired) return MoveResult.IllegalMove;
 
             Vector2 pos = _pawnPromotionRequired.Position;
             PieceColor color = _pawnPromotionRequired.color;
@@ -146,6 +147,11 @@ namespace Sslime0339.Chess
             _promotionRequired = false;
             _pawnPromotionRequired = null;
 
+
+            _board.UpdateAttackedSquares();
+
+            // Передаем ход и проверяем шах, мат или пат
+            return FinalizeTurn();
             // после изменения пешки передаём ход противнику
             ChangeCurrentTurn();
         }

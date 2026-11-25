@@ -38,7 +38,6 @@ namespace ConsoleUI
             Draw.Chessboard(game.GetBoardData());
 
         }
-            
         static void Promotion(ChessGame game)
         {
             Console.WriteLine("Напишите в какую фигуру превратиться пешка\n(Q - ферзь, R - ладья, B - слон, K - конь)\n");
@@ -49,8 +48,11 @@ namespace ConsoleUI
                 Console.WriteLine("Неверный ввод");
                 input = Console.ReadLine();
             }
-            game.ToPromote(promotionPiece);
+
+            MoveResult result = game.ToPromote(promotionPiece);
+            Console.WriteLine($"\n{result}");
         }
+
 
     }
 }
