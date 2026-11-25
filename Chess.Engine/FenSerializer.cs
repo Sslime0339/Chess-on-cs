@@ -6,7 +6,7 @@ namespace Sslime0339.Chess
 {
     internal static class FenSerializer
     {
-        public static string Serialize(Chessboard board, PieceColor currentTurn)
+        public static string Serialize(Chessboard board, PieceColor currentTurn, int halfMoveClock = 0)
         {
             StringBuilder fen = new StringBuilder();
 
@@ -66,7 +66,7 @@ namespace Sslime0339.Chess
             fen.Append(enPassantSquare);
 
             // 5. Счетчики полуходов и номера хода (заглушки по стандарту FEN)
-            fen.Append(" 0 1");
+            fen.Append($" {halfMoveClock} 1");
 
             return fen.ToString();
         }

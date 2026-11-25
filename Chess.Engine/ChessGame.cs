@@ -28,13 +28,41 @@ namespace Sslime0339.Chess
 
         private Pawn _pawnPromotionRequired;
 
+        private int _halfMoveClock;
+        public int HalfMoveClock => _halfMoveClock;
+
+        private Dictionary<string, int> _positionHistory;
+
 
         public ChessGame()
         {
             _board = new Chessboard();
             _currentTurn = PieceColor.White;
             _isGameOver = false;
+            _halfMoveClock = 0;
+
+            _positionHistory = new Dictionary<string, int>();
+            RecordCurrentPosition();
         }
+
+
+        private int RecordCurrentPosition()
+        {
+            string fullFen = SaveToFen();
+            // Отбрасываем счетчики полуходов и номера хода в конце FEN
+            string[] parts = fullFen.Split(' ');
+            string positionKey = $"{parts[0]} {parts[1]} {parts[2]} {parts[3]}";
+
+            if (_positionHistory.TryGetValue(positionKey, out int count))
+            {
+                _positionHistory[positionKey] = count + 1;
+                return count + 1;
+            }
+
+            _positionHistory[positionKey] = 1;
+            return 1;
+        }
+
 
 
         public MoveResult Move(Vector2 from, Vector2 to)
@@ -58,6 +86,22 @@ namespace Sslime0339.Chess
 
             if (validMoves.Contains(to))
             {
+                // Для правила 50 шагов
+                bool isPawnMove = piece.type == PieceType.Pawn;
+                bool isCapture = !_board[to].IsEmpty || (isPawnMove && _board[to].EnPassantTarget);
+
+                if (isPawnMove || isCapture)
+                {
+                    _halfMoveClock = 0;
+                    // Оптимизация: после взятия или хода пешкой старые позиции уже никогда не повторятся
+                    _positionHistory.Clear();
+                }
+                else
+                    _halfMoveClock++;
+
+
+
+
                 //DrawEnPassantTargetSquare();
                 _board.Move(from, to);
 
@@ -102,6 +146,12 @@ namespace Sslime0339.Chess
         {
             ChangeCurrentTurn();
 
+
+            // Записываем новую позицию после смены очереди хода
+            int repetitions = RecordCurrentPosition();
+
+
+
             if (_board.GetAllValidMoves(_currentTurn).Count == 0)
             {
                 _isGameOver = true;
@@ -113,6 +163,13 @@ namespace Sslime0339.Chess
                 {
                     return MoveResult.Stalemate;
                 }
+            }
+
+            // для правила 50 шагов
+            if (repetitions >= 3 || _halfMoveClock >= 100)
+            {
+                _isGameOver = true;
+                return MoveResult.Draw;
             }
 
             if (_board.IsKingCheck(_currentTurn))
@@ -203,7 +260,7 @@ namespace Sslime0339.Chess
 
         public string SaveToFen()
         {
-            return FenSerializer.Serialize(_board, _currentTurn);
+            return FenSerializer.Serialize(_board, _currentTurn, _halfMoveClock);
         }
 
         public void LoadFromFen(string fen)
@@ -213,16 +270,21 @@ namespace Sslime0339.Chess
             _currentTurn = loadedTurn;
             _promotionRequired = false;
             _pawnPromotionRequired = null;
+            _halfMoveClock = 0;
 
-            // Проверяем, не загружена ли уже завершенная позиция (мат или пат)
-            if (_board.GetAllValidMoves(_currentTurn).Count == 0)
+            string[] parts = fen.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length >= 5 && int.TryParse(parts[4], out int parsedClock))
             {
-                _isGameOver = true;
+                _halfMoveClock = parsedClock;
             }
-            else
-            {
-                _isGameOver = false;
-            }
+
+            _positionHistory.Clear();
+            RecordCurrentPosition();
+
+
+            _isGameOver = _board.GetAllValidMoves(_currentTurn).Count == 0 || _halfMoveClock >= 100;
+
+
         }
 
         public void SaveToFile(string filePath)

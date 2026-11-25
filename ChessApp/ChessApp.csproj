@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Chess.Bot\Chess.Bot.csproj" />
     <ProjectReference Include="..\Chess.Engine\Chess.Engine.csproj" />
   </ItemGroup>
 

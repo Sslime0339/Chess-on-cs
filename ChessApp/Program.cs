@@ -4,7 +4,7 @@ using ConsoleUI;
 
 class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
 
         Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -14,7 +14,7 @@ class Program
 
         //Console.SetWindowSize(800, 800);
 
-        GameStart.Start();
+        await GameStart.StartAsync();
         /*
         // всякоя для UI
         Console.BackgroundColor = ConsoleColor.White;
