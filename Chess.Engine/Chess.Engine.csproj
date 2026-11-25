@@ -6,5 +6,9 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Sslime0339.Chess</RootNamespace>
   </PropertyGroup>
+	
+	<ItemGroup>
+		<InternalsVisibleTo Include="Chess.Bot" />
+	</ItemGroup>
 
 </Project>

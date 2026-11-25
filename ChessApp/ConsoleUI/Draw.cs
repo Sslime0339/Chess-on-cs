@@ -106,6 +106,7 @@ namespace ConsoleUI
                     _ => ' '
                 };
 
+            // так как чёрная пешка отрисовываясь занимает 2 места, убираем лишний пробел
             if (square.Piece == PieceType.Pawn && square.Color == PieceColor.Black)
                 Console.Write($" {symbol}");
             else

@@ -76,6 +76,26 @@ namespace Sslime0339.Chess
         }
 
 
+        private Chessboard(bool empty)
+        {
+            _board = new Square[8, 8];
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    _board[i, j] = new Square();
+                }
+            }
+        }
+
+        public static Chessboard CreateEmpty()
+        {
+            return new Chessboard(true);
+        }
+
+
+
+
         private Chessboard(Chessboard boardToCopy)
         {
             _board = new Square[8, 8];

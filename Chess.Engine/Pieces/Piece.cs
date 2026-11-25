@@ -54,6 +54,14 @@ namespace Sslime0339.Chess.Pieces
         }
 
 
+        internal void SetFirstMove(bool value)
+        {
+            _firstMove = value;
+        }
+
+
+
+
         public virtual void BeforeMove(Vector2 newPosition)
         {
 

@@ -15,7 +15,37 @@ namespace ConsoleUI
             {
                 Draw.Chessboard(game.GetBoardData());
                 Console.WriteLine($"Введите ход ({game.CurrentTurn})");
-                string input = Console.ReadLine();
+
+
+
+
+                string input = Console.ReadLine()?.Trim();
+
+                if (input == "save")
+                {
+                    game.SaveToFile("save.txt");
+                    Console.WriteLine($"Игра сохранена! FEN: {game.SaveToFen()}");
+                    continue;
+                }
+
+                if (input == "load")
+                {
+                    if (System.IO.File.Exists("save.txt"))
+                    {
+                        game.LoadFromFile("save.txt");
+                        Console.WriteLine("Игра загружена!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Файл сохранения не найден.");
+                    }
+                    continue;
+                }
+
+
+
+
+                //string input = Console.ReadLine();
                 Vector2 from;
                 Vector2 to;
                 bool isCorrect = ConsoleInputHandler.TryParseMove(input, out from, out to);

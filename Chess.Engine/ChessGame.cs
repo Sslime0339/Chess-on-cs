@@ -201,6 +201,51 @@ namespace Sslime0339.Chess
                 }
         */
 
+        public string SaveToFen()
+        {
+            return FenSerializer.Serialize(_board, _currentTurn);
+        }
+
+        public void LoadFromFen(string fen)
+        {
+            FenSerializer.Deserialize(fen, out Chessboard loadedBoard, out PieceColor loadedTurn);
+            _board = loadedBoard;
+            _currentTurn = loadedTurn;
+            _promotionRequired = false;
+            _pawnPromotionRequired = null;
+
+            // Проверяем, не загружена ли уже завершенная позиция (мат или пат)
+            if (_board.GetAllValidMoves(_currentTurn).Count == 0)
+            {
+                _isGameOver = true;
+            }
+            else
+            {
+                _isGameOver = false;
+            }
+        }
+
+        public void SaveToFile(string filePath)
+        {
+            System.IO.File.WriteAllText(filePath, SaveToFen());
+        }
+
+        public void LoadFromFile(string filePath)
+        {
+            string fen = System.IO.File.ReadAllText(filePath);
+            LoadFromFen(fen);
+        }
+
+
+        // В Chess.Engine\ChessGame.cs
+        internal Chessboard GetBoardClone()
+        {
+            return _board.Clone();
+        }
+
+
+
+
         public SquareInfo[,] GetBoardData()
         {
             return _board.GetData();
