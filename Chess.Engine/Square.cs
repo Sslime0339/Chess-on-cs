@@ -14,20 +14,20 @@ namespace Sslime0339.Chess
 
         public bool EnPassantTarget { get; set; }
 
-        public Piece? EnPassantTargetPiece { get; set; }
+        public Vector2? EnPassantTargetPawnPosition { get; set; }
 
 
 
         public void ResetEnPassantTarget()
         {
             EnPassantTarget = false;
-            EnPassantTargetPiece = null;
+            EnPassantTargetPawnPosition = null;
         }
 
-        public void SetEnPassantTarget(Piece piece)
+        public void SetEnPassantTarget(Vector2 pawnPosition)
         {
             EnPassantTarget = true;
-            EnPassantTargetPiece = piece;
+            EnPassantTargetPawnPosition = pawnPosition;
         }
 
 
@@ -76,6 +76,8 @@ namespace Sslime0339.Chess
                 newSquare.AddPiece(_piece.Clone(newBoard));
             newSquare.IsAttackedWhite = IsAttackedWhite;
             newSquare.IsAttackedBlack = IsAttackedBlack;
+            newSquare.EnPassantTarget = EnPassantTarget;
+            newSquare.EnPassantTargetPawnPosition = EnPassantTargetPawnPosition;
 
             return newSquare;
         }

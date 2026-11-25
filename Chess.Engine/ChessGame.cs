@@ -151,9 +151,8 @@ namespace Sslime0339.Chess
             _board.UpdateAttackedSquares();
 
             // Передаем ход и проверяем шах, мат или пат
-            return FinalizeTurn();
             // после изменения пешки передаём ход противнику
-            ChangeCurrentTurn();
+            return FinalizeTurn();
         }
 
         /*

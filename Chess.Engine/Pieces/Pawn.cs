@@ -19,8 +19,8 @@ namespace Sslime0339.Chess.Pieces
         {
             if (_board[newPosition].EnPassantTarget)
             {
-                Piece pieceToRemove = _board[newPosition].EnPassantTargetPiece;
-                _board[pieceToRemove.Position].RemovePiece();
+                Vector2 targetPos = (Vector2)_board[newPosition].EnPassantTargetPawnPosition;
+                _board[targetPos].RemovePiece();
             }
 
             base.BeforeMove(newPosition);
@@ -34,7 +34,7 @@ namespace Sslime0339.Chess.Pieces
                 Vector2 forward = GetForward();
 
 
-                _board[_position + forward].SetEnPassantTarget(this);
+                _board[_position + forward].SetEnPassantTarget(newPosition);
             }
 
 
