@@ -10,6 +10,10 @@ class Program
         Console.OutputEncoding = System.Text.Encoding.UTF8;
         Console.InputEncoding = System.Text.Encoding.UTF8;
 
+        ConsoleFontHelper.SetConsoleFont("MS Gothic", 24);
+
+        //Console.SetWindowSize(800, 800);
+
         GameStart.Start();
         /*
         // всякоя для UI

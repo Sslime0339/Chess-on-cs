@@ -36,76 +36,83 @@ namespace ConsoleUI
     {
         public static void Chessboard(SquareInfo[,] boardData)
         {
-
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.Write("   A B C D E F G H   ");
-            Console.ResetColor();
-            Console.Write("\n");
+            DrawHeader();
 
             for (int j = 7; j >= 0; j--)
             {
+                // Левая рамка с номером строки
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.Write($" {j + 1} ");
 
                 for (int i = 0; i < 8; i++)
                 {
-                    DrawSquare(boardData[i, j], i, j);
+                    // Чередуем фон самой клетки (светло-серый и тёмно-серый)
+                    bool isLightSquare = (i + j) % 2 != 0;
+                    Console.BackgroundColor = isLightSquare ? ConsoleColor.Gray : ConsoleColor.DarkGray;
+                    Console.ForegroundColor = ConsoleColor.Black;
 
-
-
-                    Console.Write(" ");
+                    DrawPiece(boardData[i, j]);
                 }
-                Console.Write($"{j + 1} ");
+
+                // Правая рамка с номером строки
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.Write($" {j + 1} ");
                 Console.ResetColor();
                 Console.Write("\n");
             }
 
+            DrawHeader();
+        }
+
+        private static void DrawHeader()
+        {
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.Write("   A B C D E F G H   ");
+            // По два пробела на каждый столбец, чтобы совпало с шириной клеток
+            Console.Write("    A  B  C  D  E  F  G  H    ");
             Console.ResetColor();
             Console.Write("\n");
         }
 
-
-
-
-        private static void DrawSquare(SquareInfo square, int x, int y)
+        private static void DrawPiece(SquareInfo square)
         {
-            if (square.IsEmpty == true)
+            if (square.IsEmpty)
             {
-                if ((x + y) % 2 != 0)
-                    Console.Write("◻"); // белый квадрат
-                else
-                    Console.Write("◼"); // чёрный квадрат
+                // Клетка шириной в 3 пробела делает пропорции доски почти квадратными
+                Console.Write("   ");
+                return;
             }
-            else if (square.Color == PieceColor.White)
-            {
-                switch (square.Piece)
-                {
-                    case PieceType.Pawn:    Console.Write("♙"); break;
-                    case PieceType.Knight:  Console.Write("♘"); break;
-                    case PieceType.Bishop:  Console.Write("♗"); break;
-                    case PieceType.Rook:    Console.Write("♖"); break;
-                    case PieceType.Queen:   Console.Write("♕"); break;
-                    case PieceType.King:    Console.Write("♔"); break;
-                }
-            }
-            else // чёрные фигуры
-            {
-                switch (square.Piece)
-                {
-                    case PieceType.Pawn:    Console.Write("♟"); break;
-                    case PieceType.Knight:  Console.Write("♞"); break;
-                    case PieceType.Bishop:  Console.Write("♝"); break;
-                    case PieceType.Rook:    Console.Write("♜"); break;
-                    case PieceType.Queen:   Console.Write("♛"); break;
-                    case PieceType.King:    Console.Write("♚"); break;
-                }
-            }
-        }
 
+            char symbol = square.Color == PieceColor.White
+                ? square.Piece switch
+                {
+                    PieceType.Pawn => '♙',
+                    PieceType.Knight => '♘',
+                    PieceType.Bishop => '♗',
+                    PieceType.Rook => '♖',
+                    PieceType.Queen => '♕',
+                    PieceType.King => '♔',
+                    _ => ' '
+                }
+                : square.Piece switch
+                {
+                    PieceType.Pawn => '♟',
+                    PieceType.Knight => '♞',
+                    PieceType.Bishop => '♝',
+                    PieceType.Rook => '♜',
+                    PieceType.Queen => '♛',
+                    PieceType.King => '♚',
+                    _ => ' '
+                };
+
+            if (square.Piece == PieceType.Pawn && square.Color == PieceColor.Black)
+                Console.Write($" {symbol}");
+            else
+                // Пробел слева и справа центрирует фигуру внутри клетки
+                Console.Write($" {symbol} ");
+        }
     }
+
 }
