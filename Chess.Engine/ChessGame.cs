@@ -2,13 +2,17 @@ using System.Collections.Generic;
 using System;
 
 
+
+using Sslime0339.Chess.Pieces;
+
+
 // TODO: Сделать поддержку Portable Game Notation (PGN) (стандартная запись шахматной игры).
 
 // TODO: Сделать сохранение игры.
 
-namespace Chess
+namespace Sslime0339.Chess
 {
-    class ChessGame
+    public class ChessGame
     {
         private Chessboard _board;
 

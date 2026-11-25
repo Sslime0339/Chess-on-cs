@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System;
+using Sslime0339.Chess;
 
 
-namespace Chess
+namespace Sslime0339.Chess.Pieces
 {
     class Pawn : Piece
     {

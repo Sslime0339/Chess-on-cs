@@ -1,9 +1,6 @@
-
-
-
-namespace Chess
+namespace Sslime0339.Chess
 {
-    struct Vector2
+    public struct Vector2
     {
         public int X;
         public int Y;

@@ -1,4 +1,4 @@
-using Chess;
+using Sslime0339.Chess;
 using System;
 
 

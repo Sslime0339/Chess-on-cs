@@ -1,10 +1,6 @@
-﻿
-
-
-
-namespace Chess
+﻿namespace Sslime0339.Chess
 {
-    enum PromotionPiece
+    public enum PromotionPiece
     {
         Queen,
         Rook,

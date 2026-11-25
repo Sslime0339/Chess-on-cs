@@ -1,8 +1,6 @@
+using Sslime0339.Chess.Pieces;
 
-
-
-
-namespace Chess
+namespace Sslime0339.Chess
 {
     class Square
     {

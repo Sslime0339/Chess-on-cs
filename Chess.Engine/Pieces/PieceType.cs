@@ -1,9 +1,6 @@
-
-
-
-namespace Chess
+namespace Sslime0339.Chess.Pieces
 {
-    enum PieceType
+    public enum PieceType
     {
         Pawn,
         Knight,

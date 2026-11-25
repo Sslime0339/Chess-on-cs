@@ -1,10 +1,11 @@
+using Sslime0339.Chess.Pieces;
 using System;
 
 
-namespace Chess
+namespace Sslime0339.Chess
 {
 
-    struct SquareInfo
+    public struct SquareInfo
     {
         // эта главная переменная
         public bool IsEmpty { get; }

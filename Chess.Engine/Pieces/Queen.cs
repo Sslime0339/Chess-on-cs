@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 
 
-namespace Chess
+namespace Sslime0339.Chess.Pieces
 {
     class Queen : Piece
     {

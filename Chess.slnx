@@ -1,5 +1,7 @@
 
 <Solution>
+  <Project Path="Chess.Bot/Chess.Bot.csproj" Id="3bdc6b23-6019-48c8-8ab3-b1fc29498eac" />
+  <Project Path="Chess.Engine/Chess.Engine.csproj" Id="5a758bc7-92ed-4750-9e67-bcc12146dc5f" />
   <Project Path="ChessApp\ChessApp.csproj" />
   <Project Path="ChessNotes/ChessNotes.shproj" Id="43e42b57-208a-4221-a1b6-d7ec083c2580" />
 </Solution>

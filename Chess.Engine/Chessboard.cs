@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System;
+using Sslime0339.Chess.Pieces;
 
 
 // TODO: Сделать сохранение игровой доски.
-namespace Chess
+namespace Sslime0339.Chess
 {
     class Chessboard
     {

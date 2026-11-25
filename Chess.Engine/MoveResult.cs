@@ -1,10 +1,6 @@
-
-
-
-
-namespace Chess
+namespace Sslime0339.Chess
 {
-    enum MoveResult
+    public enum MoveResult
     {
         GameOver,
         IllegalMove, 
